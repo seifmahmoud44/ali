@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Navbar from "./components/Navbar";
+import Cookies from "js-cookie";
 
 function App() {
+  const [dark, setDark] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${Cookies.get("dark") === "true" ? "dark" : ""} h-screen`}>
+      <div className={`App   dark:bg-[#292929] h-screen`}>
+        <Navbar setDark={setDark} dark={dark} />
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <h1 className="dark:text-blue-600 text-3xl">Hello Ali</h1>
+          <p className="dark:text-blue-600">just simple task you asked</p>
+        </div>
+      </div>
     </div>
   );
 }
